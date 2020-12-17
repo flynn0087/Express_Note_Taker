@@ -10,3 +10,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+//the listener that starts the server
+app.listen(PORT, function() {
+    console.log("App is listening on PORT: " + PORT);
+});
