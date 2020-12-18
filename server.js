@@ -16,10 +16,6 @@ app.use(express.static());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//this creates the absoulte path
-const initialDir = path.join(__dirname, "/public");
-app.use(express.static());
-
 //the listener that starts the server
 app.listen(PORT, function() {
     console.log("App is listening on PORT: " + PORT);
