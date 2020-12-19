@@ -35,6 +35,18 @@ app.get("*", function(req, res) {
     res.sendFile(path.join(initialDir, "index.html"));
 });
 
+//this is the section to add a note
+app.post("/api/notes", (req, res) => {
+    let allNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    let noteNum = (allNotes.length).toString();
+    let nextNote = req.body;
+    nextNote.id = noteNum;
+    allNotes.push(nextNote);
+    fs.writeFileSync("./db/db.json", JSON.stringify(allNotes));
+    res.json(allNotes);
+    console.log("Note saved");
+})
+
 //the listener that starts the server
 app.listen(PORT, function() {
     console.log("App is listening on PORT: " + PORT);
