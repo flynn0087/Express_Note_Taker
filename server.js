@@ -21,9 +21,24 @@ app.get("/notes", function(req, res) {
     res.sendFile(path.join(initialDir, "notes.hmtl"));
 });
 
-app.get("/api/notes", function(req, res) {
-    res.sendFile(path.join(__dirname, "/db/db.json", "utf8"));    
+app.get("*", function(reg, res) {
+    res.sendFile(path.join(initialDir, "index.html"));
 });
+
+app.get("/api/notes", function(req, res) {
+    res.sendFile(path.join(__dirname, "/db/db.json"));    
+});
+
+app.get("/api/notes/:id", function(req, res) {
+    let saved = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    res.JSON(saved[Number(req.param.id)]);
+});
+
+
+
+
+
+
 
 //the listener that starts the server
 app.listen(PORT, function() {
