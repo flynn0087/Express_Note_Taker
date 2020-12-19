@@ -17,7 +17,8 @@
     If visiting the Heroku page, no installation beyond a web browser is needed.
         
 ## Usage:
-    For anyone who need better orginizational tools
+    https://polar-citadel-56988.herokuapp.com/
+    For anyone who need better orginizational tools 
 
 ## License:
     MIT
