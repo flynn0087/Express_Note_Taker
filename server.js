@@ -16,6 +16,11 @@ app.use(express.static());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+//these are the routes needed 
+app.get("/notes", function(req, res) {
+    res.sendFile(path.join(initialDir, "notes.hmtl"));
+});
+
 //the listener that starts the server
 app.listen(PORT, function() {
     console.log("App is listening on PORT: " + PORT);
