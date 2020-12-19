@@ -21,6 +21,10 @@ app.get("/notes", function(req, res) {
     res.sendFile(path.join(initialDir, "notes.hmtl"));
 });
 
+app.get("/api/notes", function(req, res) {
+    res.sendFile(path.join(__dirname, "/db/db.json", "utf8"));    
+});
+
 //the listener that starts the server
 app.listen(PORT, function() {
     console.log("App is listening on PORT: " + PORT);
