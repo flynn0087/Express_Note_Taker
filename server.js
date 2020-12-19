@@ -47,6 +47,23 @@ app.post("/api/notes", (req, res) => {
     console.log("Note saved");
 })
 
+//this is the section to delete a note, it will also re-assign the numbered id
+app.delete("/api/notes/:id", (req, res) => {
+    let allNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    let noteNum = req.params.id;
+    let noteStartNum = 0;
+    allNotes = allNotes.filter(selectedNote => {
+        return selectedNote.id != noteNum;
+    })
+    for (selectedNote of allNotes) {
+        selectedNote.id = noteStartNum.toString();
+        noteStartNum++;
+    }
+    fs.writeFileSync("./db/db.json", JSON.stringify(allNotes));
+    res.json(allNotes);
+    console.log("Deleted note");
+})
+
 //the listener that starts the server
 app.listen(PORT, function() {
     console.log("App is listening on PORT: " + PORT);
